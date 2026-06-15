@@ -279,3 +279,39 @@
   color: $color-primary;
   border: 2rpx solid $color-primary;
 }
+
+.remainingInfo {
+  display: flex;
+  align-items: baseline;
+  padding: $spacing-md $spacing-lg;
+  background: $color-primary-bg;
+  border-radius: $radius-md;
+}
+
+.remainingNumber {
+  font-size: 56rpx;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin-right: $spacing-xs;
+  line-height: 1;
+}
+
+.remainingUnit {
+  font-size: $font-size-sm;
+  color: $color-primary;
+  margin-right: $spacing-sm;
+  font-weight: $font-weight-medium;
+}
+
+.remainingHint {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.remainingWarning {
+  display: block;
+  font-size: $font-size-xs;
+  color: #FF7D00;
+  margin-top: $spacing-sm;
+  padding-left: $spacing-xs;
+}

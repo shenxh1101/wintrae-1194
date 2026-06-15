@@ -221,12 +221,32 @@ export const useFoodStore = create<FoodState & FoodActions>((set, get) => ({
 
   editPublishedFood: (foodId, updates) => {
     const { foods, myPublished, favorites } = get();
-    const foodExists = myPublished.some(f => f.id === foodId);
-    if (!foodExists) return false;
+    const food = myPublished.find(f => f.id === foodId);
+    if (!food) return false;
+
+    let finalUpdates = { ...updates };
+
+    if (finalUpdates.quantity !== undefined) {
+      const newQuantity = Math.max(0, Number(finalUpdates.quantity));
+      const currentRemaining = food.remaining;
+
+      let newRemaining = currentRemaining;
+      if (newQuantity < currentRemaining) {
+        newRemaining = newQuantity;
+      }
+
+      const claimedCount = food.quantity - currentRemaining;
+      if (newQuantity < claimedCount) {
+        newRemaining = 0;
+      }
+
+      finalUpdates.quantity = newQuantity;
+      finalUpdates.remaining = newRemaining;
+    }
 
     const editFn = (f: FoodItem) => {
       if (f.id === foodId) {
-        return { ...f, ...updates };
+        return { ...f, ...finalUpdates };
       }
       return f;
     };
@@ -234,6 +254,14 @@ export const useFoodStore = create<FoodState & FoodActions>((set, get) => ({
     const updatedMyPublished = myPublished.map(editFn);
     const updatedFoods = foods.map(editFn);
     const updatedFavorites = favorites.map(editFn);
+
+    console.log('[Store] editPublishedFood 成功', {
+      foodId,
+      oldQuantity: food.quantity,
+      oldRemaining: food.remaining,
+      newQuantity: finalUpdates.quantity,
+      newRemaining: finalUpdates.remaining
+    });
 
     set({ myPublished: updatedMyPublished, foods: updatedFoods, favorites: updatedFavorites });
     return true;

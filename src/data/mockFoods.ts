@@ -465,7 +465,7 @@ export const mockUser: UserInfo = {
   phone: '13800138888',
   type: 'resident',
   creditScore: 95,
-  community: '阳光花园小区',
+  community: '阳光花园',
   publishCount: 12,
   claimCount: 28,
   reviewCount: 1,

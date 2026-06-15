@@ -14,6 +14,14 @@ const MyPublishPage: React.FC = () => {
   const [editingFood, setEditingFood] = useState<FoodItem | null>(null);
   const [editForm, setEditForm] = useState<Partial<FoodItem>>({});
 
+  const getExpectedRemaining = () => {
+    if (!editingFood) return 0;
+    const newQuantity = editForm.quantity !== undefined ? Number(editForm.quantity) : editingFood.quantity;
+    const claimedCount = editingFood.quantity - editingFood.remaining;
+    if (newQuantity < claimedCount) return 0;
+    return Math.min(newQuantity, editingFood.remaining);
+  };
+
   const getStatusLabel = (status: FoodItem['status']) => {
     const map = {
       available: '进行中',
@@ -246,6 +254,26 @@ const MyPublishPage: React.FC = () => {
                     onInput={(e) => setEditForm({ ...editForm, unit: e.detail.value })}
                   />
                 </View>
+              </View>
+
+              <View className={styles.formGroup}>
+                <Text className={styles.formLabel}>剩余份数</Text>
+                <View className={styles.remainingInfo}>
+                  <Text className={styles.remainingNumber}>
+                    {getExpectedRemaining()}
+                  </Text>
+                  <Text className={styles.remainingUnit}>
+                    {editForm.unit || editingFood?.unit || '份'}
+                  </Text>
+                  <Text className={styles.remainingHint}>
+                    （已领取 {editingFood ? editingFood.quantity - editingFood.remaining : 0} 份）
+                  </Text>
+                </View>
+                {editingFood && editForm.quantity !== undefined && Number(editForm.quantity) < editingFood.quantity && (
+                  <Text className={styles.remainingWarning}>
+                    ⚠️ 总数量减少后，剩余份数将自动调整
+                  </Text>
+                )}
               </View>
 
               <View className={styles.formGroup}>
