@@ -1,0 +1,211 @@
+@use '@/styles/variables.scss' as *;
+
+.foodCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  margin-bottom: $spacing-md;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: $shadow-card-hover;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 320rpx;
+}
+
+.foodImage {
+  width: 100%;
+  height: 100%;
+}
+
+.distanceBadge {
+  position: absolute;
+  top: $spacing-md;
+  left: $spacing-md;
+  background: rgba(0, 0, 0, 0.6);
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-round;
+}
+
+.distanceText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+}
+
+.allergenBadge {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  background: $color-error;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-round;
+}
+
+.allergenText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+}
+
+.content {
+  padding: $spacing-lg;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-sm;
+}
+
+.title {
+  flex: 1;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.categoryTag {
+  background: $color-primary-bg;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  margin-left: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.categoryText {
+  font-size: $font-size-xs;
+  color: $color-primary;
+}
+
+.description {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  margin-bottom: $spacing-md;
+  @include text-ellipsis-multi(2);
+}
+
+.publisherRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: $radius-round;
+  margin-right: $spacing-sm;
+}
+
+.publisherName {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  margin-right: $spacing-sm;
+}
+
+.publisherType {
+  background: $color-primary-bg;
+  padding: 2rpx 12rpx;
+  border-radius: $radius-xs;
+  margin-right: auto;
+}
+
+.merchantType {
+  background: $color-secondary-bg;
+}
+
+.typeText {
+  font-size: 20rpx;
+  color: $color-primary;
+}
+
+.merchantType .typeText {
+  color: $color-secondary;
+}
+
+.creditScore {
+  background: rgba(255, 193, 7, 0.15);
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-xs;
+}
+
+.creditText {
+  font-size: $font-size-xs;
+  color: #FF8800;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: $spacing-md;
+  border-top: 1rpx solid $color-divider;
+}
+
+.remainingInfo {
+  flex: 1;
+}
+
+.remainingBar {
+  width: 200rpx;
+  height: 8rpx;
+  background: $color-bg-hover;
+  border-radius: $radius-round;
+  overflow: hidden;
+  margin-bottom: $spacing-xs;
+}
+
+.remainingProgress {
+  height: 100%;
+  border-radius: $radius-round;
+  transition: width $transition-base;
+}
+
+.progress-normal {
+  background: $color-success;
+}
+
+.progress-low {
+  background: $color-warning;
+}
+
+.progress-urgent {
+  background: $color-error;
+}
+
+.remainingText {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+}
+
+.text-normal {
+  color: $color-success;
+}
+
+.text-low {
+  color: $color-warning;
+}
+
+.text-urgent {
+  color: $color-error;
+}
+
+.pickupTime {
+  background: $color-bg-tag;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+}
+
+.timeText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+}

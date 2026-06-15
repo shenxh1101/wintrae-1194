@@ -1,0 +1,327 @@
+@use '@/styles/variables.scss' as *;
+
+.publishPage {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding-bottom: 200rpx;
+}
+
+.formSection {
+  background: $color-bg-card;
+  margin: $spacing-md $page-padding;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.sectionTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-lg;
+  display: flex;
+  align-items: center;
+}
+
+.titleIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-sm;
+}
+
+.formItem {
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.formLabel {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-bottom: $spacing-sm;
+  display: block;
+}
+
+.required {
+  color: $color-error;
+  margin-right: $spacing-xs;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  padding: 0 $spacing-md;
+  height: 80rpx;
+}
+
+.formInput {
+  flex: 1;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  background: transparent;
+  border: none;
+}
+
+.textareaWrap {
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+}
+
+.formTextarea {
+  width: 100%;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  line-height: $line-height-normal;
+  min-height: 200rpx;
+  background: transparent;
+  border: none;
+}
+
+.charCount {
+  text-align: right;
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: $spacing-xs;
+}
+
+.imageUploadArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.imageItem {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.uploadImage {
+  width: 100%;
+  height: 100%;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 0 $radius-sm;
+}
+
+.removeText {
+  color: $color-text-white;
+  font-size: $font-size-sm;
+}
+
+.uploadBtn {
+  width: 200rpx;
+  height: 200rpx;
+  border: 2rpx dashed $color-border;
+  border-radius: $radius-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $color-bg-hover;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.uploadIcon {
+  font-size: 48rpx;
+  margin-bottom: $spacing-xs;
+}
+
+.uploadText {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-sm;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-md $spacing-sm;
+  border-radius: $radius-md;
+  background: $color-bg-hover;
+  transition: all $transition-base;
+
+  &.active {
+    background: $color-primary-bg;
+    border: 2rpx solid $color-primary;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.categoryIcon {
+  font-size: 40rpx;
+  margin-bottom: $spacing-xs;
+}
+
+.categoryName {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+}
+
+.active .categoryName {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+}
+
+.quantityRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.quantityInput {
+  flex: 1;
+}
+
+.unitSelect {
+  width: 160rpx;
+  height: 80rpx;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+.timeRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.timeItem {
+  flex: 1;
+}
+
+.timeInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  padding: 0 $spacing-md;
+  height: 80rpx;
+}
+
+.timeText {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+.timeIcon {
+  font-size: $font-size-md;
+  color: $color-text-tertiary;
+}
+
+.allergenList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.allergenTag {
+  padding: $spacing-xs $spacing-md;
+  background: $color-bg-hover;
+  border-radius: $radius-round;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  transition: all $transition-base;
+
+  &.active {
+    background: $color-error;
+    color: $color-text-white;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.allergenTip {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-top: $spacing-sm;
+}
+
+.addressInput {
+  display: flex;
+  align-items: center;
+  background: $color-bg-hover;
+  border-radius: $radius-md;
+  padding: 0 $spacing-md;
+  height: 80rpx;
+}
+
+.addressIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-sm;
+}
+
+.addressText {
+  flex: 1;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  @include text-ellipsis;
+}
+
+.submitBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-bg-card;
+  padding: $spacing-md $page-padding;
+  padding-bottom: calc($spacing-md + env(safe-area-inset-bottom));
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.submitBtn {
+  @include button-reset;
+  width: 100%;
+  height: $button-height-lg;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  border-radius: $radius-button;
+  color: $color-text-white;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  transition: all $transition-base;
+
+  &:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+
+  &.disabled {
+    background: $color-text-disabled;
+  }
+}

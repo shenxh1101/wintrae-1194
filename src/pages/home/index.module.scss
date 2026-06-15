@@ -1,0 +1,136 @@
+@use '@/styles/variables.scss' as *;
+
+.homePage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $color-primary-bg 0%, $color-bg-page 30%);
+}
+
+.header {
+  padding: $spacing-lg $page-padding $spacing-md;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+}
+
+.locationBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.locationIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-xs;
+}
+
+.locationText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+  flex: 1;
+  @include text-ellipsis;
+}
+
+.refreshIcon {
+  font-size: $font-size-lg;
+  color: $color-text-white;
+  opacity: 0.9;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: $radius-round;
+  padding: 0 $spacing-lg;
+  height: 80rpx;
+}
+
+.searchIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-sm;
+  color: $color-text-tertiary;
+}
+
+.searchInput {
+  flex: 1;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $page-padding;
+}
+
+.sortOptions {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.sortItem {
+  display: flex;
+  align-items: center;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  transition: all $transition-base;
+
+  &.active {
+    color: $color-primary;
+    background: $color-primary-bg;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.sortIcon {
+  font-size: $font-size-sm;
+  margin-right: $spacing-xs;
+}
+
+.content {
+  padding: 0 $page-padding $spacing-xl;
+}
+
+.foodList {
+  margin-top: $spacing-sm;
+}
+
+.statsBar {
+  display: flex;
+  justify-content: space-around;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.statNumber {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.statLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.statDivider {
+  width: 1rpx;
+  height: 60rpx;
+  background: $color-divider;
+}

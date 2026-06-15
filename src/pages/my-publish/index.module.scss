@@ -1,0 +1,110 @@
+@use '@/styles/variables.scss' as *;
+
+.myPublishPage {
+  min-height: 100vh;
+  background: $color-bg-page;
+  padding: $spacing-md $page-padding;
+}
+
+.publishCard {
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.foodImage {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: $radius-md;
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+}
+
+.cardInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.foodTitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-xs;
+  @include text-ellipsis;
+}
+
+.foodMeta {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  margin-bottom: $spacing-xs;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 2rpx 12rpx;
+  border-radius: $radius-round;
+  font-size: 20rpx;
+}
+
+.statusAvailable {
+  background: $color-primary-bg;
+  color: $color-primary;
+}
+
+.statusReserved {
+  background: rgba(255, 125, 0, 0.1);
+  color: $color-warning;
+}
+
+.statusExpired {
+  background: $color-bg-hover;
+  color: $color-text-tertiary;
+}
+
+.cardFooter {
+  display: flex;
+  gap: $spacing-sm;
+  padding-top: $spacing-md;
+  border-top: 1rpx solid $color-divider;
+}
+
+.actionBtn {
+  @include button-reset;
+  flex: 1;
+  height: 64rpx;
+  border-radius: $radius-button;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  transition: all $transition-base;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  color: $color-text-white;
+  border: none;
+}
+
+.btnSecondary {
+  background: $color-bg-hover;
+  color: $color-text-secondary;
+  border: none;
+}
+
+.btnDanger {
+  background: rgba(245, 63, 63, 0.1);
+  color: $color-error;
+  border: none;
+}
