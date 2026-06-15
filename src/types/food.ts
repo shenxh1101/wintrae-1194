@@ -14,7 +14,7 @@ export interface FoodItem {
   publisher: Publisher;
   location: Location;
   distance: number;
-  status: 'available' | 'reserved' | 'claimed' | 'expired';
+  status: 'available' | 'reserved' | 'claimed' | 'expired' | 'offline';
   createdAt: string;
   isFavorite: boolean;
 }
@@ -51,21 +51,26 @@ export interface Order {
   status: 'reserved' | 'picked' | 'cancelled' | 'expired';
   publisherName: string;
   publisherAvatar: string;
+  publisherPhone: string;
   pickupAddress: string;
   pickupStartTime: string;
   pickupEndTime: string;
   createdAt: string;
+  reviewed?: boolean;
 }
 
 export interface Review {
   id: string;
   orderId: string;
+  foodId: string;
+  foodTitle: string;
   userId: string;
   userName: string;
   userAvatar: string;
   rating: number;
   content: string;
   createdAt: string;
+  targetUserId: string;
 }
 
 export interface UserInfo {
@@ -78,6 +83,8 @@ export interface UserInfo {
   community: string;
   publishCount: number;
   claimCount: number;
+  reviewCount: number;
+  totalRating: number;
 }
 
 export interface BlacklistItem {

@@ -6,6 +6,159 @@
   padding: $spacing-md $page-padding;
 }
 
+.statsCard {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  border-radius: $radius-xl;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-card;
+}
+
+.statsHeader {
+  display: flex;
+  align-items: center;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.statsAvatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: $radius-round;
+  border: 3rpx solid rgba(255, 255, 255, 0.6);
+  margin-right: $spacing-md;
+}
+
+.statsInfo {
+  flex: 1;
+}
+
+.statsName {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-white;
+  margin-bottom: $spacing-xs;
+  display: block;
+}
+
+.statsMeta {
+  display: flex;
+  align-items: center;
+}
+
+.creditBadge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 6rpx 20rpx;
+  border-radius: $radius-round;
+  font-size: $font-size-xs;
+  color: $color-text-white;
+  font-weight: $font-weight-medium;
+}
+
+.statsMain {
+  display: flex;
+  align-items: center;
+  padding-top: $spacing-lg;
+}
+
+.statsAvg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 $spacing-md;
+}
+
+.avgNumber {
+  font-size: 72rpx;
+  font-weight: $font-weight-bold;
+  color: $color-text-white;
+  line-height: 1;
+  margin-bottom: $spacing-xs;
+}
+
+.avgStars {
+  display: flex;
+  gap: 4rpx;
+}
+
+.avgStars .star {
+  font-size: $font-size-md;
+  color: #FFD700;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+}
+
+.avgStars .starEmpty {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.statsDivider {
+  width: 1rpx;
+  height: 100rpx;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 $spacing-lg;
+}
+
+.statsDetail {
+  flex: 1;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-xs 0;
+
+  &:not(:last-child) {
+    margin-bottom: 4rpx;
+  }
+}
+
+.statsLabel {
+  font-size: $font-size-xs;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.statsValue {
+  font-size: $font-size-sm;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+}
+
+.highlight {
+  color: #FFD700;
+  font-weight: $font-weight-bold;
+}
+
+.tabBar {
+  display: flex;
+  background: $color-bg-card;
+  border-radius: $radius-lg;
+  padding: 8rpx;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-card;
+}
+
+.tabItem {
+  flex: 1;
+  text-align: center;
+  padding: $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-md;
+  transition: all $transition-base;
+}
+
+.tabItem.active {
+  background: $color-primary-bg;
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+}
+
+.reviewList {
+  margin-bottom: 120rpx;
+}
+
 .reviewCard {
   background: $color-bg-card;
   border-radius: $radius-lg;
@@ -25,17 +178,40 @@
   height: 64rpx;
   border-radius: $radius-round;
   margin-right: $spacing-md;
+  flex-shrink: 0;
 }
 
 .userInfo {
   flex: 1;
+  min-width: 0;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rpx;
 }
 
 .userName {
   font-size: $font-size-md;
   font-weight: $font-weight-medium;
   color: $color-text-primary;
-  margin-bottom: $spacing-xs;
+}
+
+.selfBadge {
+  font-size: $font-size-xs;
+  color: $color-primary;
+  background: $color-primary-bg;
+  padding: 2rpx 12rpx;
+  border-radius: $radius-sm;
+  margin-left: $spacing-xs;
+  font-weight: $font-weight-medium;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
 }
 
 .rating {
@@ -52,10 +228,40 @@
   color: $color-border;
 }
 
+.ratingText {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+}
+
+.foodInfo {
+  display: flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-md;
+  background: $color-bg-page;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-md;
+}
+
+.foodLabel {
+  font-size: $font-size-xs;
+  color: $color-text-tertiary;
+  flex-shrink: 0;
+  margin-right: $spacing-xs;
+}
+
+.foodName {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+  @include text-ellipsis;
+  flex: 1;
+}
+
 .reviewContent {
   font-size: $font-size-sm;
-  color: $color-text-secondary;
-  line-height: $line-height-normal;
+  color: $color-text-primary;
+  line-height: $line-height-relaxed;
+  padding: 0 $spacing-xs;
   margin-bottom: $spacing-md;
 }
 
@@ -67,15 +273,25 @@
   border-top: 1rpx solid $color-divider;
 }
 
-.foodName {
-  font-size: $font-size-xs;
-  color: $color-text-tertiary;
-  @include text-ellipsis;
-  flex: 1;
-}
-
 .reviewTime {
   font-size: $font-size-xs;
   color: $color-text-tertiary;
   flex-shrink: 0;
+}
+
+.moreBtn {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: $color-text-tertiary;
+  border-radius: $radius-round;
+  transition: all $transition-base;
+
+  &:active {
+    background: $color-bg-hover;
+    color: $color-text-secondary;
+  }
 }

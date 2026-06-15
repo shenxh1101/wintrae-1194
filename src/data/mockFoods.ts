@@ -1,4 +1,4 @@
-import { FoodItem, Category, Order, UserInfo, BlacklistItem } from '@/types/food';
+import { FoodItem, Category, Order, UserInfo, BlacklistItem, Review } from '@/types/food';
 
 export const categories: Category[] = [
   { id: 'all', name: '全部', icon: '🍽️' },
@@ -27,6 +27,22 @@ export const allergenOptions = [
   '二氧化硫'
 ];
 
+export const communities = [
+  '阳光花园',
+  '翠湖天地',
+  '锦绣家园',
+  '幸福里',
+  '万科城'
+];
+
+export const distanceRanges = [
+  { key: 0.5, label: '500米内' },
+  { key: 1, label: '1公里内' },
+  { key: 2, label: '2公里内' },
+  { key: 3, label: '3公里内' },
+  { key: 999, label: '不限' }
+];
+
 export const mockFoods: FoodItem[] = [
   {
     id: '1',
@@ -50,7 +66,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/64/200/200',
       type: 'resident',
       creditScore: 98,
-      phone: '138****1234'
+      phone: '13800131234'
     },
     location: {
       address: '阳光花园小区3号楼2单元',
@@ -85,7 +101,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/177/200/200',
       type: 'merchant',
       creditScore: 95,
-      phone: '010-8888****'
+      phone: '01088881234'
     },
     location: {
       address: '阳光花园小区东门商业街12号',
@@ -119,7 +135,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/338/200/200',
       type: 'resident',
       creditScore: 92,
-      phone: '139****5678'
+      phone: '13900135678'
     },
     location: {
       address: '翠湖天地小区5号楼1单元',
@@ -153,7 +169,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/1027/200/200',
       type: 'resident',
       creditScore: 99,
-      phone: '136****9012'
+      phone: '13600139012'
     },
     location: {
       address: '阳光花园小区1号楼3单元',
@@ -187,7 +203,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/91/200/200',
       type: 'merchant',
       creditScore: 96,
-      phone: '010-6666****'
+      phone: '01066661234'
     },
     location: {
       address: '翠湖天地小区南门菜市场A12',
@@ -221,7 +237,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/1025/200/200',
       type: 'resident',
       creditScore: 94,
-      phone: '137****3456'
+      phone: '13700133456'
     },
     location: {
       address: '阳光花园小区8号楼1单元',
@@ -255,7 +271,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/1018/200/200',
       type: 'merchant',
       creditScore: 97,
-      phone: '010-7777****'
+      phone: '01077771234'
     },
     location: {
       address: '阳光花园小区西门底商3号',
@@ -289,7 +305,7 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/659/200/200',
       type: 'resident',
       creditScore: 93,
-      phone: '135****7890'
+      phone: '13500137890'
     },
     location: {
       address: '翠湖天地小区3号楼2单元',
@@ -323,15 +339,15 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/237/200/200',
       type: 'resident',
       creditScore: 91,
-      phone: '133****2345'
+      phone: '13300132345'
     },
     location: {
-      address: '阳光花园小区6号楼3单元',
-      community: '阳光花园',
+      address: '锦绣家园小区6号楼3单元',
+      community: '锦绣家园',
       latitude: 39.9058,
       longitude: 116.4070
     },
-    distance: 0.5,
+    distance: 2.1,
     status: 'available',
     createdAt: '2026-06-15 09:30',
     isFavorite: false
@@ -357,15 +373,15 @@ export const mockFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/1027/200/200',
       type: 'resident',
       creditScore: 96,
-      phone: '138****6789'
+      phone: '13800136789'
     },
     location: {
-      address: '翠湖天地小区7号楼1单元',
-      community: '翠湖天地',
+      address: '幸福里小区7号楼1单元',
+      community: '幸福里',
       latitude: 39.9090,
       longitude: 116.4120
     },
-    distance: 1.5,
+    distance: 2.8,
     status: 'available',
     createdAt: '2026-06-12 14:00',
     isFavorite: false
@@ -383,10 +399,12 @@ export const mockOrders: Order[] = [
     status: 'reserved',
     publisherName: '麦香坊烘焙',
     publisherAvatar: 'https://picsum.photos/id/177/200/200',
+    publisherPhone: '01088881234',
     pickupAddress: '阳光花园小区东门商业街12号',
     pickupStartTime: '18:00',
     pickupEndTime: '21:00',
-    createdAt: '2026-06-15 16:00'
+    createdAt: '2026-06-15 16:00',
+    reviewed: false
   },
   {
     id: 'o2',
@@ -398,10 +416,12 @@ export const mockOrders: Order[] = [
     status: 'picked',
     publisherName: '张奶奶',
     publisherAvatar: 'https://picsum.photos/id/1027/200/200',
+    publisherPhone: '13600139012',
     pickupAddress: '阳光花园小区1号楼3单元',
     pickupStartTime: '08:00',
     pickupEndTime: '22:00',
-    createdAt: '2026-06-14 10:00'
+    createdAt: '2026-06-14 10:00',
+    reviewed: false
   },
   {
     id: 'o3',
@@ -413,10 +433,28 @@ export const mockOrders: Order[] = [
     status: 'picked',
     publisherName: '陈小姐',
     publisherAvatar: 'https://picsum.photos/id/1025/200/200',
+    publisherPhone: '13700133456',
     pickupAddress: '阳光花园小区8号楼1单元',
     pickupStartTime: '09:00',
     pickupEndTime: '21:00',
-    createdAt: '2026-06-14 21:00'
+    createdAt: '2026-06-14 21:00',
+    reviewed: true
+  }
+];
+
+export const mockReviews: Review[] = [
+  {
+    id: 'r1',
+    orderId: 'o3',
+    foodId: '6',
+    foodTitle: '混合坚果大礼包',
+    userId: 'u6',
+    userName: '小林同学',
+    userAvatar: 'https://picsum.photos/id/1025/200/200',
+    rating: 5,
+    content: '坚果很新鲜，包装也很精致，陈小姐人特别好！',
+    createdAt: '2026-06-14 22:30',
+    targetUserId: 'u6'
   }
 ];
 
@@ -424,12 +462,14 @@ export const mockUser: UserInfo = {
   id: 'currentUser',
   name: '小林同学',
   avatar: 'https://picsum.photos/id/1025/200/200',
-  phone: '138****8888',
+  phone: '13800138888',
   type: 'resident',
   creditScore: 95,
   community: '阳光花园小区',
   publishCount: 12,
-  claimCount: 28
+  claimCount: 28,
+  reviewCount: 1,
+  totalRating: 5
 };
 
 export const mockBlacklist: BlacklistItem[] = [
@@ -463,7 +503,7 @@ export const mockMyPublishedFoods: FoodItem[] = [
       avatar: 'https://picsum.photos/id/1025/200/200',
       type: 'resident',
       creditScore: 95,
-      phone: '138****8888'
+      phone: '13800138888'
     },
     location: {
       address: '阳光花园小区5号楼2单元',

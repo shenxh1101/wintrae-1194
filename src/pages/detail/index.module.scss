@@ -158,6 +158,17 @@
   color: $color-text-tertiary;
 }
 
+.publisherPhone {
+  display: inline-block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+  padding: $spacing-xs $spacing-sm;
+  background: $color-primary-bg;
+  border-radius: $radius-round;
+}
+
 .infoRow {
   display: flex;
   align-items: flex-start;

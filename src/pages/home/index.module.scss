@@ -134,3 +134,178 @@
   height: 60rpx;
   background: $color-divider;
 }
+
+.locationMain {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.locationIcon {
+  font-size: $font-size-lg;
+  margin-right: $spacing-xs;
+}
+
+.locationArrow {
+  font-size: 20rpx;
+  color: $color-text-white;
+  opacity: 0.8;
+  margin-left: $spacing-xs;
+}
+
+.locationText {
+  font-size: $font-size-md;
+  color: $color-text-white;
+  font-weight: $font-weight-semibold;
+  @include text-ellipsis;
+  max-width: 220rpx;
+}
+
+.distanceBadge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 8rpx 20rpx;
+  border-radius: $radius-round;
+  margin: 0 $spacing-md;
+}
+
+.distanceText {
+  font-size: $font-size-xs;
+  color: $color-text-white;
+  font-weight: $font-weight-medium;
+}
+
+.refreshWrap {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refreshIcon {
+  font-size: $font-size-lg;
+  color: $color-text-white;
+  opacity: 0.9;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.searchClear {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  color: $color-text-tertiary;
+  margin-left: $spacing-xs;
+}
+
+.filterTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.filterHint {
+  margin-bottom: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  background: rgba(0, 181, 120, 0.08);
+  border-radius: $radius-md;
+  border-left: 4rpx solid $color-primary;
+}
+
+.filterHintText {
+  font-size: $font-size-xs;
+  color: $color-text-secondary;
+}
+
+.filterClear {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+  margin-left: $spacing-xs;
+}
+
+.pickerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.pickerSheet {
+  width: 100%;
+  max-height: 70vh;
+  background: $color-bg-card;
+  border-radius: $radius-xl $radius-xl 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pickerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1rpx solid $color-divider;
+}
+
+.pickerTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+}
+
+.pickerClose {
+  font-size: $font-size-lg;
+  color: $color-text-tertiary;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pickerBody {
+  padding: $spacing-sm 0;
+  max-height: 55vh;
+}
+
+.pickerOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  transition: all $transition-base;
+
+  &:active {
+    background: $color-bg-hover;
+  }
+}
+
+.pickerOptionActive {
+  color: $color-primary;
+  font-weight: $font-weight-medium;
+  background: $color-primary-bg;
+}
+
+.pickerCheck {
+  font-size: $font-size-md;
+  color: $color-primary;
+  font-weight: $font-weight-bold;
+}

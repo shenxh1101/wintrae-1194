@@ -8,22 +8,36 @@ import { useUserStore } from '@/store/useUserStore';
 import FoodCard from '@/components/FoodCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import EmptyState from '@/components/EmptyState';
+import { communities, distanceRanges } from '@/data/mockFoods';
 
 const HomePage: React.FC = () => {
   const {
     currentCategory,
     sortBy,
     searchKeyword,
+    currentCommunity,
+    distanceRange,
     setCategory,
     setSortBy,
     setSearchKeyword,
+    setCurrentCommunity,
+    setDistanceRange,
     getFilteredFoods
   } = useFoodStore();
 
   const { user } = useUserStore();
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [showCommunityPicker, setShowCommunityPicker] = useState(false);
+  const [showDistancePicker, setShowDistancePicker] = useState(false);
 
-  const filteredFoods = useMemo(() => getFilteredFoods(), [currentCategory, sortBy, searchKeyword, getFilteredFoods]);
+  const filteredFoods = useMemo(() => getFilteredFoods(), [
+    currentCategory,
+    sortBy,
+    searchKeyword,
+    currentCommunity,
+    distanceRange,
+    getFilteredFoods
+  ]);
 
   useDidShow(() => {
     console.log('[HomePage] 页面显示');
@@ -41,10 +55,6 @@ const HomePage: React.FC = () => {
     }, 1000);
   };
 
-  const handlePullDownRefresh = () => {
-    handleRefresh();
-  };
-
   const sortOptions = [
     { key: 'distance', label: '距离最近', icon: '📍' },
     { key: 'time', label: '最新发布', icon: '🕐' },
@@ -55,13 +65,29 @@ const HomePage: React.FC = () => {
   const totalRemaining = filteredFoods.reduce((sum, f) => sum + f.remaining, 0);
   const merchantsCount = new Set(filteredFoods.map(f => f.publisher.id)).size;
 
+  const getDistanceLabel = (range: number) => {
+    const item = distanceRanges.find(d => d.key === range);
+    return item ? item.label : '不限';
+  };
+
   return (
     <View className={styles.homePage}>
       <View className={styles.header}>
-        <View className={styles.locationBar} onClick={handleRefresh}>
-          <Text className={styles.locationIcon}>📍</Text>
-          <Text className={styles.locationText}>{user.community}</Text>
-          <Text className={styles.refreshIcon}>🔄</Text>
+        <View className={styles.locationBar}>
+          <View className={styles.locationMain} onClick={() => setShowCommunityPicker(true)}>
+            <Text className={styles.locationIcon}>📍</Text>
+            <Text className={styles.locationText}>{currentCommunity}</Text>
+            <Text className={styles.locationArrow}>▼</Text>
+          </View>
+          <View
+            className={styles.distanceBadge}
+            onClick={() => setShowDistancePicker(true)}
+          >
+            <Text className={styles.distanceText}>{getDistanceLabel(distanceRange)}</Text>
+          </View>
+          <View className={styles.refreshWrap} onClick={handleRefresh}>
+            <Text className={classnames(styles.refreshIcon, isRefreshing && styles.spinning)}>🔄</Text>
+          </View>
         </View>
 
         <View className={styles.searchBar}>
@@ -74,6 +100,14 @@ const HomePage: React.FC = () => {
             onInput={(e) => setSearchKeyword(e.detail.value)}
             confirmType="search"
           />
+          {searchKeyword && (
+            <Text
+              className={styles.searchClear}
+              onClick={() => setSearchKeyword('')}
+            >
+              ✕
+            </Text>
+          )}
         </View>
       </View>
 
@@ -129,6 +163,24 @@ const HomePage: React.FC = () => {
           </View>
         </View>
 
+        {(currentCommunity !== '全部' || distanceRange < 999) && (
+          <View className={styles.filterHint}>
+            <Text className={styles.filterHintText}>
+              筛选：{currentCommunity !== '全部' ? `🏘️ ${currentCommunity} · ` : ''}
+              {getDistanceLabel(distanceRange)}
+              <Text
+                className={styles.filterClear}
+                onClick={() => {
+                  setCurrentCommunity('全部');
+                  setDistanceRange(999);
+                }}
+              >
+                 清除筛选
+              </Text>
+            </Text>
+          </View>
+        )}
+
         <View className={styles.foodList}>
           {filteredFoods.length > 0 ? (
             filteredFoods.map(food => (
@@ -138,11 +190,77 @@ const HomePage: React.FC = () => {
             <EmptyState
               icon="🍽️"
               title="暂无相关食物"
-              description="换个分类试试，或者发布你想分享的食物吧"
+              description={
+                currentCommunity !== '全部' || distanceRange < 999
+                  ? '当前筛选条件下暂无食物，试试清除筛选条件'
+                  : '换个分类试试，或者发布你想分享的食物吧'
+              }
             />
           )}
         </View>
       </ScrollView>
+
+      {showCommunityPicker && (
+        <View className={styles.pickerOverlay} onClick={() => setShowCommunityPicker(false)}>
+          <View className={styles.pickerSheet} onClick={(e) => e.stopPropagation()}>
+            <View className={styles.pickerHeader}>
+              <Text className={styles.pickerTitle}>选择社区</Text>
+              <Text className={styles.pickerClose} onClick={() => setShowCommunityPicker(false)}>✕</Text>
+            </View>
+            <ScrollView className={styles.pickerBody} scrollY>
+              {['全部', ...communities].map(community => (
+                <View
+                  key={community}
+                  className={classnames(
+                    styles.pickerOption,
+                    currentCommunity === community && styles.pickerOptionActive
+                  )}
+                  onClick={() => {
+                    setCurrentCommunity(community);
+                    setShowCommunityPicker(false);
+                  }}
+                >
+                  <Text>{community === '全部' ? '🌍 全部社区' : `🏘️ ${community}`}</Text>
+                  {currentCommunity === community && (
+                    <Text className={styles.pickerCheck}>✓</Text>
+                  )}
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+        </View>
+      )}
+
+      {showDistancePicker && (
+        <View className={styles.pickerOverlay} onClick={() => setShowDistancePicker(false)}>
+          <View className={styles.pickerSheet} onClick={(e) => e.stopPropagation()}>
+            <View className={styles.pickerHeader}>
+              <Text className={styles.pickerTitle}>选择距离范围</Text>
+              <Text className={styles.pickerClose} onClick={() => setShowDistancePicker(false)}>✕</Text>
+            </View>
+            <View className={styles.pickerBody}>
+              {distanceRanges.map(range => (
+                <View
+                  key={range.key}
+                  className={classnames(
+                    styles.pickerOption,
+                    distanceRange === range.key && styles.pickerOptionActive
+                  )}
+                  onClick={() => {
+                    setDistanceRange(range.key);
+                    setShowDistancePicker(false);
+                  }}
+                >
+                  <Text>📍 {range.label}</Text>
+                  {distanceRange === range.key && (
+                    <Text className={styles.pickerCheck}>✓</Text>
+                  )}
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
+      )}
     </View>
   );
 };

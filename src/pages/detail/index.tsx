@@ -42,15 +42,36 @@ const DetailPage: React.FC = () => {
   };
 
   const handleContact = () => {
-    Taro.showModal({
-      title: '联系发布者',
-      content: `是否拨打 ${food.publisher.name} 的电话？`,
+    const formatPhone = (phone: string) => {
+      if (phone.length === 11) {
+        return phone.slice(0, 3) + '-' + phone.slice(3, 7) + '-' + phone.slice(7);
+      }
+      return phone;
+    };
+    Taro.showActionSheet({
+      itemList: [
+        `拨打电话：${formatPhone(food.publisher.phone)}`,
+        `复制号码：${food.publisher.phone}`
+      ],
       success: (res) => {
-        if (res.confirm) {
-          console.log('[Detail] 拨打电话', food.publisher.phone);
-          Taro.showToast({
-            title: '正在拨打...',
-            icon: 'none'
+        if (res.tapIndex === 0) {
+          Taro.makePhoneCall({
+            phoneNumber: food.publisher.phone,
+            fail: () => {
+              Taro.showModal({
+                title: '联系方式',
+                content: `${food.publisher.name}的电话：${food.publisher.phone}\n\n请手动拨打此号码联系发布者。`,
+                showCancel: false,
+                confirmText: '我知道了'
+              });
+            }
+          });
+        } else if (res.tapIndex === 1) {
+          Taro.setClipboardData({
+            data: food.publisher.phone,
+            success: () => {
+              Taro.showToast({ title: '号码已复制', icon: 'success' });
+            }
           });
         }
       }
@@ -162,6 +183,13 @@ const DetailPage: React.FC = () => {
                 </Text>
                 <Text className={styles.metaItem}>⭐ {food.publisher.creditScore} 信用分</Text>
               </View>
+              <Text className={styles.publisherPhone} onClick={handleContact}>
+                📞 {(() => {
+                  const p = food.publisher.phone;
+                  if (p.length === 11) return p.slice(0, 3) + '-' + p.slice(3, 7) + '-' + p.slice(7);
+                  return p;
+                })()}
+              </Text>
             </View>
           </View>
         </View>
